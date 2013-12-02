@@ -8,28 +8,6 @@
 window.Notification = (function(){
 	
 	var a = [], int, i=0, n, callbacks = [], ttl = 0;
-
-	function swaptitle(title){
-	
-		if(a.length===0){
-			a = [document.title]
-		}
-
-		a.push(title);
-
-		if(!int){
-			int = setInterval(function(){
-
-				// has document.title changed externally?
-				if(a.indexOf(document.title) === -1 ){
-					// update the default title
-					a[0] = document.title;
-				}
-				
-				document.title = a[++i%a.length];
-			}, 1000);
-		}
-	}
 	
 	function addEvent(el,name,func){
 		if(name.match(" ")){
@@ -129,12 +107,6 @@ window.Notification = (function(){
 		// @description string
 		// @callback function
 		createNotification : function(icon, title, description, callback){
-			
-			//
-			// Swap document.title
-			//
-			swaptitle(title);			
-
 			//
 			// Add callback
 			//
